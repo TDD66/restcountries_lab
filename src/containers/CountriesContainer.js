@@ -29,14 +29,14 @@ const CountriesContainers = () => {
             <div className="all-countries">
                 { countries ?
                 <CountryList countries={countries}/>
-                : <p>Loading</p>
+                : <h2>Loading</h2>
                 }
             </div>
 
             <div className="visited-countries">
-                {visitedCountries ? 
+                { visitedCountries ? 
                 <CountryList countries={visitedCountries}/>
-                : <h1>No visited countries</h1>
+                : <h2>No visited countries</h2>
                 }
             </div>
         </div>
