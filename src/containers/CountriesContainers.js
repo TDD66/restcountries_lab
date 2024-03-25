@@ -21,7 +21,7 @@ const CountriesContainers = () => {
 
     return ( 
         <>
-            <CountryList />
+            <CountryList countries={countries}/>
         </>
     );
 }
