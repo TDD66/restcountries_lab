@@ -1,13 +1,17 @@
-const Country = ({ country, addVisitedCountry }) => {
+const Country = ({ country, addVisitedCountry, removeVisitedCountry, isVisited }) => {
 
     const handleClick = () => {
-        addVisitedCountry(country);
+        if(!isVisited){
+            addVisitedCountry(country);
+        }
+        else{
+            removeVisitedCountry(country);
+        }
         console.log("EVENT");
     }
 
     return (  
         <>
-
             <h2>{country.name.official}</h2>
             <p>Capital City: {country.capital}</p>
             <p>Region: {country.region}</p>

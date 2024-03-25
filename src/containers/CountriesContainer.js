@@ -36,11 +36,12 @@ const CountriesContainers = () => {
         setCountries([...countries]);
     }
 
-    // const removeVisitedCountry = (countryToRemove) => {
-    //     const indexOfCountry = visitedCountries.indexOf(countryToRemove);
-    //     visitedCountries.splice(indexOfCountry, 1);
-    //     setVisitedCountries([...visitedCountries]);    
-    // }
+    const removeVisitedCountry = (countryToRemove) => {
+        const indexOfCountry = visitedCountries.indexOf(countryToRemove);
+        visitedCountries.splice(indexOfCountry, 1);
+        setVisitedCountries([...visitedCountries]);
+        setCountries([...countries, countryToRemove]);  
+    }
 
 
 
@@ -49,7 +50,7 @@ const CountriesContainers = () => {
             <div className="all-countries">
                 <h1>All Countries</h1>
                 { countries ?
-                <CountryList countries={countries} addVisitedCountry={addVisitedCountry}/>
+                <CountryList countries={countries} isVisited={false} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
                 : <h2>Loading</h2>
                 }
             </div>
@@ -57,7 +58,7 @@ const CountriesContainers = () => {
             <div className="visited-countries">
                 <h1>Visited Countries</h1>
                 { visitedCountries ? 
-                <CountryList countries={visitedCountries} removeVisitedCountry={removeVisitedCountry}/>
+                <CountryList countries={visitedCountries} isVisited={true} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
                 : <h2>No visited countries</h2>
                 }
             </div>
