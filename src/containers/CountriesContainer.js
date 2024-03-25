@@ -5,7 +5,7 @@ import "./CountriesContainer.css";
 const CountriesContainers = () => {
 
     const [countries, setCountries] = useState(null);
-    const [visitedCountries, setVisitedCountries] = useState(null);
+    const [visitedCountries, setVisitedCountries] = useState();
 
     const loadCountries = async () => {
         const response = await fetch("https://restcountries.com/v3.1/all");
@@ -17,18 +17,27 @@ const CountriesContainers = () => {
         loadCountries();
     }, [])
 
+
     useEffect((visitedCountry) => {
-        setVisitedCountries([...visitedCountries, visitedCountry]);
+        if(visitedCountries){
+            setVisitedCountries([...visitedCountries, visitedCountry]);
+        }
     }, [visitedCountries]);
 
     return ( 
         <div className="country-lists">
             <div className="all-countries">
+                { countries ?
                 <CountryList countries={countries}/>
+                : <p>Loading</p>
+                }
             </div>
 
             <div className="visited-countries">
+                {visitedCountries ? 
                 <CountryList countries={visitedCountries}/>
+                : <h1>No visited countries</h1>
+                }
             </div>
         </div>
     );
