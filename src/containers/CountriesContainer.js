@@ -19,6 +19,9 @@ const CountriesContainers = () => {
     }, [])
 
     const addVisitedCountry = (visitedCountry) => {
+
+        removeCountryFromMainList(visitedCountry);
+
         if(visitedCountries == null){
             setVisitedCountries([visitedCountry]);
         }
@@ -27,11 +30,19 @@ const CountriesContainers = () => {
         }
     }
 
-    const removeVisitedCountry = (countryToRemove) => {
-        const indexOfCountry = visitedCountries.indexOf(countryToRemove);
-        visitedCountries.splice(indexOfCountry, 1);
-        setVisitedCountries([...visitedCountries]);    
+    const removeCountryFromMainList = (countryToRemove) => {
+        const indexOfCountry = countries.indexOf(countryToRemove);
+        countries.splice(indexOfCountry, 1);
+        setCountries([...countries]);
     }
+
+    // const removeVisitedCountry = (countryToRemove) => {
+    //     const indexOfCountry = visitedCountries.indexOf(countryToRemove);
+    //     visitedCountries.splice(indexOfCountry, 1);
+    //     setVisitedCountries([...visitedCountries]);    
+    // }
+
+
 
     return ( 
         <div className="country-lists">
