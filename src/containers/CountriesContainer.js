@@ -46,29 +46,30 @@ const CountriesContainers = () => {
 
 
     return ( 
-        <div className="country-lists">
-            <div className="all-countries">
-                <h1>All Countries</h1>
-                {/* <form>
-                    <label>Filter countries:</label>
-                    <input
-                    type="text"
-                    />
-                </form> */}
-                { countries ?
-                <CountryList countries={countries} isVisited={false} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
-                : <h2>Loading</h2>
-                }
-            </div>
+        <>
+            <header>
+                <h1>Visited Countries List</h1>
+            </header>
+            <main>
+                <div className="country-lists">
+                    <div className="all-countries">
+                        <h2>All Countries</h2>
+                        { countries ?
+                        <CountryList countries={countries} isVisited={false} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
+                        : <h3>Loading</h3>
+                        }
+                    </div>
 
-            <div className="visited-countries">
-                <h1>Visited Countries</h1>
-                { visitedCountries ? 
-                <CountryList countries={visitedCountries} isVisited={true} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
-                : <h2>No visited countries</h2>
-                }
-            </div>
-        </div>
+                    <div className="visited-countries">
+                        <h2>Visited Countries</h2>
+                        { visitedCountries ? 
+                        <CountryList countries={visitedCountries} isVisited={true} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
+                        : <h3>No visited countries</h3>
+                        }
+                    </div>
+                </div>
+                </main>
+        </>
     );
 }
  
