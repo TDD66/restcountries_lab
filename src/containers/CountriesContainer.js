@@ -43,10 +43,18 @@ const CountriesContainers = () => {
         setCountries([...countries, countryToRemove]);  
     }
 
+
+
     return ( 
         <div className="country-lists">
             <div className="all-countries">
                 <h1>All Countries</h1>
+                {/* <form>
+                    <label>Filter countries:</label>
+                    <input
+                    type="text"
+                    />
+                </form> */}
                 { countries ?
                 <CountryList countries={countries} isVisited={false} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
                 : <h2>Loading</h2>
