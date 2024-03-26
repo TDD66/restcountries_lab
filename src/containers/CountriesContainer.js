@@ -6,6 +6,7 @@ const CountriesContainers = () => {
 
     const [countries, setCountries] = useState(null);
     const [visitedCountries, setVisitedCountries] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("")
 
     const loadCountries = async () => {
         const response = await fetch("https://restcountries.com/v3.1/all");
@@ -43,7 +44,9 @@ const CountriesContainers = () => {
         setCountries([...countries, countryToRemove]);  
     }
 
-
+    const handleSearch = (evt) => {
+        setSearchQuery(evt.target.value)
+    }
 
     return ( 
         <>
@@ -54,8 +57,16 @@ const CountriesContainers = () => {
                 <div className="country-lists">
                     <div className="all-countries">
                         <h2>All Countries</h2>
+                        <form>
+                            <label>Filter countries:</label>
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={handleSearch}
+                            />
+                        </form>
                         { countries ?
-                        <CountryList countries={countries} isVisited={false} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
+                        <CountryList countries={countries} searchQuery={searchQuery} isVisited={false} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
                         : <h3>Loading</h3>
                         }
                     </div>
@@ -63,7 +74,7 @@ const CountriesContainers = () => {
                     <div className="visited-countries">
                         <h2>Visited Countries</h2>
                         { visitedCountries ? 
-                        <CountryList countries={visitedCountries} isVisited={true} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
+                        <CountryList countries={visitedCountries} searchQuery={searchQuery} isVisited={true} addVisitedCountry={addVisitedCountry} removeVisitedCountry={removeVisitedCountry}/>
                         : <h3>No visited countries</h3>
                         }
                     </div>
